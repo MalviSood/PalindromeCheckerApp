@@ -1,24 +1,36 @@
+import java.util.Scanner;
+import java.util.Deque;
+import java.util.ArrayDeque;
+
 public class UseCasePalindromeCheckerApp {
+
     public static void main(String[] args) {
 
-        // Hardcoded input string
-        String input = "madam";
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Input : ");
+        String input = scanner.nextLine();
+
+        Deque<Character> deque = new ArrayDeque<>();
+
+        // Insert characters into deque
+        for (int i = 0; i < input.length(); i++) {
+            deque.addLast(input.charAt(i));
+        }
 
         boolean isPalindrome = true;
 
-        // Loop only till half of the string length
-        for (int i = 0; i < input.length() / 2; i++) {
-
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+        // Compare front and rear
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 isPalindrome = false;
                 break;
             }
         }
-        System.out.println("Input text: madam");
-        System.out.print("Is it a palindrome? ");
-        if (isPalindrome) {
-            System.out.print("True");
-        } else {
-            System.out.print(" False");
-        }
-    }}
+
+        // Required output format
+        System.out.println("Is Palindrome? : " + isPalindrome);
+
+        scanner.close();
+    }
+}
