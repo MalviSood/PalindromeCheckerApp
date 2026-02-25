@@ -1,24 +1,40 @@
+import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
+
 public class UseCasePalindromeCheckerApp {
+
     public static void main(String[] args) {
 
-        // Hardcoded input string
-        String input = "madam";
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Input : ");
+        String input = scanner.nextLine();
+
+        Queue<Character> queue = new LinkedList<>();
+        Stack<Character> stack = new Stack<>();
+
+        // Enqueue and Push characters
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+            queue.add(ch);   // FIFO
+            stack.push(ch);  // LIFO
+        }
 
         boolean isPalindrome = true;
 
-        // Loop only till half of the string length
-        for (int i = 0; i < input.length() / 2; i++) {
-
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+        // Compare dequeue vs pop
+        while (!queue.isEmpty()) {
+            if (queue.remove() != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
         }
-        System.out.println("Input text: madam");
-        System.out.print("Is it a palindrome? ");
-        if (isPalindrome) {
-            System.out.print("True");
-        } else {
-            System.out.print(" False");
-        }
-    }}
+
+        // Required output format
+        System.out.println("Is Palindrome? : " + isPalindrome);
+
+        scanner.close();
+    }
+}
