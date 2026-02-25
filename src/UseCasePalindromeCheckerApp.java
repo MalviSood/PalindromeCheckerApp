@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
-// Service class (Encapsulation)
 class PalindromeChecker {
 
-    // Public method to check palindrome
     public boolean checkPalindrome(String input) {
 
         int start = 0;
@@ -20,8 +18,6 @@ class PalindromeChecker {
         return true;
     }
 }
-
-// Main Application class
 public class UseCasePalindromeCheckerApp {
 
     public static void main(String[] args) {
@@ -30,8 +26,6 @@ public class UseCasePalindromeCheckerApp {
 
         System.out.print("Input : ");
         String input = scanner.nextLine();
-
-        // Create object of service class
         PalindromeChecker checker = new PalindromeChecker();
 
         boolean result = checker.checkPalindrome(input);
