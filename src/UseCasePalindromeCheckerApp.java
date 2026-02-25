@@ -25,6 +25,15 @@ class StackStrategy implements PalindromeStrategy {
     }
 }
 
+class ReverseStrategy implements PalindromeStrategy {
+
+    public boolean check(String input) {
+
+        String reversed = new StringBuilder(input).reverse().toString();
+        return input.equals(reversed);
+    }
+}
+
 public class UseCasePalindromeCheckerApp {
 
     public static void main(String[] args) {
@@ -33,6 +42,7 @@ public class UseCasePalindromeCheckerApp {
 
         System.out.print("Input : ");
         String input = scanner.nextLine();
+
         PalindromeStrategy strategy = new StackStrategy();
 
         boolean result = strategy.check(input);
