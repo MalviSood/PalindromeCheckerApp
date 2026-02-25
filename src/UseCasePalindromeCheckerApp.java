@@ -1,24 +1,35 @@
+import java.util.Scanner;
+
 public class UseCasePalindromeCheckerApp {
+
     public static void main(String[] args) {
 
-        // Hardcoded input string
-        String input = "madam";
+        Scanner scanner = new Scanner(System.in);
 
-        boolean isPalindrome = true;
+        System.out.print("Input : ");
+        String input = scanner.nextLine();
 
-        // Loop only till half of the string length
-        for (int i = 0; i < input.length() / 2; i++) {
+        boolean isPalindrome = checkPalindrome(input, 0, input.length() - 1);
 
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
+        System.out.println("Is Palindrome? : " + isPalindrome);
+
+        scanner.close();
+    }
+
+    // Recursive function
+    public static boolean checkPalindrome(String str, int start, int end) {
+
+        // Base condition
+        if (start >= end) {
+            return true;
         }
-        System.out.println("Input text: madam");
-        System.out.print("Is it a palindrome? ");
-        if (isPalindrome) {
-            System.out.print("True");
-        } else {
-            System.out.print(" False");
+
+        // If mismatch found
+        if (str.charAt(start) != str.charAt(end)) {
+            return false;
         }
-    }}
+
+        // Recursive call
+        return checkPalindrome(str, start + 1, end - 1);
+    }
+}
