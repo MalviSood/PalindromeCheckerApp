@@ -1,24 +1,39 @@
+import java.util.Scanner;
+
+class PalindromeChecker {
+
+    public boolean checkPalindrome(String input) {
+
+        int start = 0;
+        int end = input.length() - 1;
+
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+}
+
 public class UseCasePalindromeCheckerApp {
+
     public static void main(String[] args) {
 
-        // Hardcoded input string
-        String input = "madam";
+        Scanner scanner = new Scanner(System.in);
 
-        boolean isPalindrome = true;
+        System.out.print("Input : ");
+        String input = scanner.nextLine();
 
-        // Loop only till half of the string length
-        for (int i = 0; i < input.length() / 2; i++) {
+        PalindromeChecker checker = new PalindromeChecker();
 
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
-        }
-        System.out.println("Input text: madam");
-        System.out.print("Is it a palindrome? ");
-        if (isPalindrome) {
-            System.out.print("True");
-        } else {
-            System.out.print(" False");
-        }
-    }}
+        boolean result = checker.checkPalindrome(input);
+
+        System.out.println("Is Palindrome? : " + result);
+
+        scanner.close();
+    }
+}
